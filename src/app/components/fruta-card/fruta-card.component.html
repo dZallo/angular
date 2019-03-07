@@ -1,0 +1,19 @@
+<div class="card" style="width: 18rem;">
+  <img src="{{fruta.imagen}}" class="card-img-top" alt="...">
+  <div class="card-body">
+    <h5 class="card-title">{{fruta.nombre}}</h5>
+    <p class="card-text">
+        <span class="{{(!fruta.oferta)?'precio':'precio-descuento'}}">Precio actual: {{fruta.precio | moneda}}</span>            
+        <span *ngIf="fruta.oferta" class="badge badge-primary">Descuento: {{fruta.descuento}}%</span>
+        <span *ngIf="fruta.oferta" class="precio">Precio final: {{ calcularDescuento(fruta) | number : '1.0-2' | moneda }}</span> <br/>
+        
+      
+        <span *ngFor="let color of fruta.colores" class="badge" [style.color]="color.codigo">
+            {{color.nombre}}
+        </span>
+      </p>
+      <div class="card-body">
+          <button class="btn btn-primary" (click)="anadirFruta($event)">Añadir a carrito</button>
+      </div>
+  </div>
+</div>
